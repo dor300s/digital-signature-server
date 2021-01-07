@@ -2,7 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const path = require('path');
 const PORT = process.env.PORT || 3030;
 
 const app = express();
@@ -30,10 +29,8 @@ app.use('/api/pdf', pdfRoute);
 
 
 
-
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-});
-
+    res.sendFile(__dirname + '/public/index.html');
+  });
 // App Listening
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
