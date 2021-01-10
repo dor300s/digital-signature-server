@@ -18,8 +18,14 @@ async function getById(id) {
 async function save(pdf) {
     const collection = await getCollection(collectionName);
     try {
-        pdf = { ...pdf, created: Date.now() };
-        await collection.insertOne(pdf);
+        if (!pdf._id) {
+            pdf = { ...pdf, created: Date.now(), edited: false };
+            await collection.insertOne(pdf);
+        } else if (!pdf.edited) {
+            pdf._id = ObjectId(pdf._id);
+            pdf.edited = true;
+            await collection.replaceOne({ "_id": pdf._id }, pdf);
+        }
         return pdf;
     } catch (err) {
         console.log('ERROE: Cannot save PDF');
