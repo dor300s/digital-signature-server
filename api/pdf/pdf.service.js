@@ -19,7 +19,7 @@ async function save(pdf) {
     const collection = await getCollection(collectionName);
     try {
         if (!pdf._id) {
-            await remove();
+            // await remove();
             pdf = { ...pdf, created: Date.now(), edited: false };
             await collection.insertOne(pdf);
         } else if (!pdf.edited) {
@@ -35,17 +35,17 @@ async function save(pdf) {
 }
 
 
-async function remove() {
-    const collection = await getCollection(collectionName);
-    try {
-        const weekTimestamp = 604800000;
-        const weekAGo = Date.now() - weekTimestamp;
-        await collection.deleteMany({ "created": { $lt: weekAGo } })
-    } catch (err) {
-        console.log('ERROR: Cannot remove PDFs');
-        throw err;
-    }
-}
+// async function remove() {
+//     const collection = await getCollection(collectionName);
+//     try {
+//         const weekTimestamp = 604800000;
+//         const weekAGo = Date.now() - weekTimestamp;
+//         await collection.deleteMany({ "created": { $lt: weekAGo } })
+//     } catch (err) {
+//         console.log('ERROR: Cannot remove PDFs');
+//         throw err;
+//     }
+// }
 
 module.exports = {
     getById,
