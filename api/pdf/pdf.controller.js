@@ -6,7 +6,7 @@ async function getPdf(req, res) {
         const pdf = await pdfService.getById(req.params.id);
         res.send(pdf);
     } catch (err) {
-        res.status(404).console.log({ error: 'Cannot get PDF' });
+        res.status(404).send({ error: 'Cannot get PDF' });
     }
 }
 
