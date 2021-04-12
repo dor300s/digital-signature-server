@@ -7,7 +7,7 @@ let dbConn = null;
 
 async function getCollection(collectionName) {
     const db = await getDatabase();
-    return db.collection(collectionName)
+    return db.collection(collectionName);
 }
 
 async function getDatabase() {
@@ -17,7 +17,7 @@ async function getDatabase() {
         return dbConn = client.db(dbName)
     } catch (err) {
         console.log('Cannot connect to DB', err);
-        throw err
+        throw err;
     }
 }
 

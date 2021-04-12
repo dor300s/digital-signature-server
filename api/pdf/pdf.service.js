@@ -1,6 +1,6 @@
 const { getCollection } = require('../../services/db.service');
-const collectionName = 'pdf';
 const { ObjectId } = require('mongodb');
+const collectionName = 'pdf';
 
 
 async function getById(id) {
